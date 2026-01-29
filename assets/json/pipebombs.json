@@ -1,4 +1,12 @@
 {
+    "matrix-rant": {
+        "title": "Staring at Shadows",
+        "icon": "🕶️",
+        "content_type": "standard",
+        "image": "https://placekitten.com/401/201",
+        "summary": "Why we are all just bacteria with anxiety."
+    },
+    
     "theater-sound": {
         "title": "Community Theater Sound Operations",
         "content_type": "manual",

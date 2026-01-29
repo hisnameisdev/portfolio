@@ -1,0 +1,14 @@
+{
+    "5k-run": {
+        "title": "Couch to 5k Program",
+        "icon": "cad.png",
+        "summary": "A progressive running plan.",
+        "content_type": "standard"
+    },
+    "meditation": {
+        "title": "Daily Mindfulness",
+        "icon": "cad.png",
+        "summary": "10-minute breathing exercises.",
+        "content_type": "manual" 
+    }
+}
