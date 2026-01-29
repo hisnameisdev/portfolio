@@ -1,0 +1,23 @@
+{
+    "theater-sound": {
+        "title": "Community Theater Sound Operations",
+        "icon": "🎭",
+        "tags": ["Audio", "Documentation", "Process"],
+        "content_type": "manual",
+        "summary": "Standard Operating Procedures for the mixing console and wireless patching."
+    },
+    "home-lab": {
+        "title": "Home Network Lab",
+        "icon": "🔌",
+        "tags": ["Networking", "Homelab"],
+        "content_type": "standard",
+        "summary": "Documentation of my Ubiquiti stack and VLAN configurations."
+    },
+    "macro-pad": {
+        "title": "Custom 3D Printed Macropad",
+        "icon": "cad.png", 
+        "tags": ["CAD", "Electronics", "Python"],
+        "content_type": "standard",
+        "summary": "Wiring a Pro Micro to a 3x3 grid of mechanical switches."
+    }
+}

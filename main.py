@@ -1,38 +1,23 @@
 import streamlit as st
 
-# --- PAGE SETUP ---
-# This must be the first command in your app
 st.set_page_config(
-    page_title="Home",
-    page_icon="👋",
+    page_title="Wright On",
+    layout="wide"  # <--- This is the magic switch
 )
 
-# --- SIDEBAR ---
-# This adds a persistent note to the sidebar
-st.sidebar.info("Select a project above to view documentation.")
+pages = {
+    "The Creator": [
+        st.Page("assets/python/about_me.py", title="About Me"),
+        st.Page("assets/python/contact.py", title="Contact"),
+    ],
+    "Domains": [
+        st.Page("assets/python/technology.py", title="Technology"),
+        st.Page("assets/python/mind_and_body.py", title="Mind & Body"),
+        st.Page("assets/python/pipebombs.py", title="Pipebombs"),
+    ],
+}
+pg = st.navigation(pages)
+pg.run()
 
-# --- MAIN CONTENT ---
-st.title("Hi, I'm [Your Name] 👋")
-st.subheader("IT Specialist | Robotics Student | Maker")
 
-st.markdown("""
-### 🚀 About Me
-I am an IT professional transitioning into **Robotics and Integrated Technologies**. 
-This portfolio documents my journey through technical projects, from soldering logic gates to designing systems in CAD.
 
-**Current Focus:**
-* 🎓 **Study:** Cert IV in Integrated Technologies (Robotics Control Systems)
-* 🛠️ **Projects:** Electronics, 3D Printing, Python Automation
-* 🧠 **Goal:** Solving problems through systems thinking.
-
----
-
-### 📂 How to navigate this site
-Use the sidebar on the left to view documentation for specific projects.
-* **Build Notes:** How I built this portfolio using Python & Streamlit.
-* **Coming Soon:** Logic Gates & 3D Printed Modular Furniture.
-""")
-
-# --- FOOTER ---
-st.divider()
-st.caption("Built with ❤️ using Python & Streamlit")
