@@ -1,0 +1,24 @@
+{
+    "example-standard": {
+        "title": "Standard Project Template",
+        "icon": "\ud83d\ude80",
+        "content_type": "standard",
+        "summary": "A standard card with an image and description.",
+        "image": "https://placekitten.com/400/300"
+    },
+    "example-manual": {
+        "title": "Manual Documentation Template",
+        "icon": "\ud83d\udcd8",
+        "content_type": "manual",
+        "summary": "An example of the advanced documentation layout with tabs.",
+        "markdown_file": "template.md",
+        "display_config": {
+            "banner_text": "\u26a0\ufe0f EXAMPLE CONFIGURATION",
+            "banner_type": "info",
+            "tabs": [
+                "Documentation",
+                "Metadata"
+            ]
+        }
+    }
+}
