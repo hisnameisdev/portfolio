@@ -1,0 +1,21 @@
+{
+    
+    "example-manual": {
+        "title": "The Streamlit CMS Template (This site)",
+        "icon": "🙇‍♂️🧠🤯💥👨‍💻🤖🧠✅",
+        "content_type": "manual",
+        "summary": "A means to collect my thoughts, create a bit of structure, and definitely not a huge exercise in procrastination.",
+        "image": "streamlit_cms.png",
+        "display_config": {
+            "banner_text": "\u26a0\ufe0f EXAMPLE CONFIGURATION",
+            "banner_type": "info",
+            "tabs": [
+                {
+                "name": "TLDR", 
+                "file": "streamlit_cms_main.md", 
+                "type": "markdown"
+                }
+            ]
+        }
+    }
+}

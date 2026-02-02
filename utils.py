@@ -14,9 +14,15 @@ def render_detail_view(item_id, items_dict, session_key="selected_item"):
     if st.button("← Return", key=f"back_{item_id}"):
         st.session_state[session_key] = None
         st.rerun()
+    
+    # 3. Title, Summary & Icon
+    st.title(f"{data.get('title', 'Untitled')}")
 
-    # 3. Title & Icon
-    st.title(f"{data.get('icon', '')} {data.get('title', 'Untitled')}")
+    st.title(f"{data.get('icon', '')}")
+
+    summary_text = data.get('summary')
+    if summary_text:
+        st.write(summary_text)
 
     # 4. Content Logic
     c_type = data.get('content_type', 'standard')
@@ -82,6 +88,47 @@ def render_detail_view(item_id, items_dict, session_key="selected_item"):
                                 st.error(f"Missing doc: {file_name}")
                         # Add other types (image/json) here if needed
 
+###GAME BEGIN###
+    st.title("🎮 The Randomizer Arena")
+    import random
+    # 1. INITIALIZE GAME STATE (The Memory)
+    # We only want to pick a number ONCE, not every time you click.
+    if 'target_number' not in st.session_state:
+        st.session_state['target_number'] = random.randint(1, 100)
+        st.session_state['attempts'] = 0
+        st.session_state['game_over'] = False
+        st.session_state['message'] = "I've picked a number between 1 and 100."
+
+    # 2. THE GAMEPLAY LOOP (Triggered by Buttons)
+    def check_guess():
+        # Grab the user's input from the session state widget
+        guess = st.session_state.my_guess
+        st.session_state['attempts'] += 1
+
+        if guess < st.session_state['target_number']:
+            st.session_state['message'] = f"📉 Too Low! (Guess: {guess})"
+        elif guess > st.session_state['target_number']:
+            st.session_state['message'] = f"📈 Too High! (Guess: {guess})"
+        else:
+            st.session_state['message'] = f"🎉 CORRECT! The number was {guess}."
+            st.session_state['game_over'] = True
+
+    # 3. RENDER THE UI
+    st.info(st.session_state['message'])
+
+    if not st.session_state['game_over']:
+        # The Input
+        st.number_input("Enter your guess:", min_value=1, max_value=100, key="my_guess")
+        
+        # The Trigger
+        st.button("Submit Guess", on_click=check_guess)
+    else:
+        st.success(f"You won in {st.session_state['attempts']} attempts!")
+        if st.button("Play Again"):
+            # Hard Reset
+            del st.session_state['target_number']
+            st.rerun()
+###GAME END###
 
 # --- THE GENERIC GRID VIEW ---
 def render_grid_view(page_title, page_description, items_dict, session_key="selected_item", hero_mode=False):
