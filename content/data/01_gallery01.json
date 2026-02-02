@@ -16,8 +16,16 @@
             "banner_text": "\u26a0\ufe0f EXAMPLE CONFIGURATION",
             "banner_type": "info",
             "tabs": [
-                "Documentation",
-                "Metadata"
+                {
+                "name": "Tab 01", 
+                "file": "template.md", 
+                "type": "markdown"
+                },
+                {
+                "name": "Tab 02", 
+                "file": "template_02.md", 
+                "type": "markdown"
+                }
             ]
         }
     }

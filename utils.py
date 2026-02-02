@@ -35,40 +35,52 @@ def render_detail_view(item_id, items_dict, session_key="selected_item"):
             else: st.info(banner_text)
 
         # Tabs Logic
-        tab_names = config.get('tabs', ["Documentation", "Details"])
-        tabs = st.tabs(tab_names)
-        
-        with tabs[0]:
-            # Load Markdown
-            md_file = data.get('markdown_file')
-            if md_file:
-                # UPDATED PATH: content/documents/
-                md_path = os.path.join(current_dir, "content", "documents", md_file)
-                
-                if os.path.exists(md_path):
-                    with open(md_path, 'r', encoding='utf-8') as f:
-                        st.markdown(f.read())
-                else:
-                    st.warning(f"File not found: {md_file}")
-            else:
-                st.info("No documentation file linked.")
+        # 1. Get the list of tab configurations (could be strings OR dicts)
+        tab_configs = config.get('tabs', ["Documentation"]) 
 
-    else:
-        # --- STANDARD MODE (Image & Summary) ---
-        
-        # Image Logic
-        img_name = data.get('image')
-        if img_name:
-            if img_name.startswith("http"):
-                st.image(img_name)
-            else:
-                # UPDATED PATH: content/images/
-                img_path = os.path.join(current_dir, "content", "images", img_name)
-                if os.path.exists(img_path):
-                    st.image(img_path)
+        if tab_configs:
+            # 2. Extract Names safely
+            tab_names = []
+            for t in tab_configs:
+                if isinstance(t, str):
+                    tab_names.append(t)  # It's just a string like "The Guide"
+                elif isinstance(t, dict):
+                    tab_names.append(t.get("name", "Tab")) # It's a config object
+            
+            # 3. Create Tabs
+            created_tabs = st.tabs(tab_names)
 
-        st.write("### Overview")
-        st.write(data.get('summary', 'No summary available.'))
+            # 4. The Smart Loop
+            for i, t in enumerate(tab_configs):
+                with created_tabs[i]:
+                    
+                    # --- HANDLE OLD FORMAT (String) ---
+                    if isinstance(t, str):
+                        # Default behavior: Look for 'markdown_file' at the root
+                        md_file = data.get('markdown_file')
+                        if i == 0 and md_file: # Only put main doc in the first tab
+                            md_path = os.path.join(current_dir, "content", "documents", md_file)
+                            if os.path.exists(md_path):
+                                with open(md_path, 'r', encoding='utf-8') as f:
+                                    st.markdown(f.read())
+                            else:
+                                st.warning(f"File not found: {md_file}")
+                        else:
+                            st.info(f"{t} content placeholder")
+
+                    # --- HANDLE NEW FORMAT (Dictionary) ---
+                    elif isinstance(t, dict):
+                        file_name = t.get("file")
+                        file_type = t.get("type", "markdown")
+                        
+                        if file_type == "markdown" and file_name:
+                            path = os.path.join(current_dir, "content", "documents", file_name)
+                            if os.path.exists(path):
+                                with open(path, 'r', encoding='utf-8') as f:
+                                    st.markdown(f.read())
+                            else:
+                                st.error(f"Missing doc: {file_name}")
+                        # Add other types (image/json) here if needed
 
 
 # --- THE GENERIC GRID VIEW ---
