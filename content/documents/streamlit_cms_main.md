@@ -8,7 +8,7 @@ I can run this locally, as well as hosting it via the Streamlit Community cloud 
 
 And look, I can make little tables here:
 
-| CMS Options   | Mine      | Not Mine   |
+| CMS Options   | Mine      | Makes Me Happy?   |
 | :---          |    :----: |     :----: |
 | Notion        | ❌        | 😞        |
 | Obsidian      | ❌        | 😞        |
